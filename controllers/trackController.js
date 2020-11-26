@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/musicStore', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/musicStore', {useNewUrlParser: true, useUnifiedTopology: true});
 /*Replace the above connection string with the actual connection string of your MongoDB database*/
 var trackSchema = new mongoose.Schema({
     trackName: String,

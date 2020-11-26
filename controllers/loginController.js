@@ -2,7 +2,7 @@ var bodyParser = require('body-parser');
 module.exports = function (app) {
     /* MONGOOSE SETUP */
     const mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost:27017/musicStore', {useNewUrlParser: true});
+    mongoose.connect('mongodb://localhost:27017/musicStore', {useNewUrlParser: true, useUnifiedTopology: true});
     /*Replace the above connection string with the actual connection string of your MongoDB database*/
     const Schema = mongoose.Schema;
     const UserDetail = new Schema({
