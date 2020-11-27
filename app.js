@@ -25,5 +25,5 @@ app.use(passport.session());
 
 app.listen(server.port);
 
-console.log(`server listening`);
-console.log(`open app in your browser using http://localhost:${server.port}`);
+console.log(`server listening on port ${server.port}`);
+console.log(`open app using http://localhost:${server.port}`);
