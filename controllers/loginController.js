@@ -1,4 +1,4 @@
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 module.exports = function (app) {
     /* MONGOOSE SETUP */
     const mongoose = require('mongoose');
