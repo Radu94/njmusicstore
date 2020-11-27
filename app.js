@@ -1,23 +1,29 @@
-var express = require('express');
-var expressLayouts = require('express-ejs-layouts');
-var session = require('express-session');
-var favicon = require('serve-favicon');
-var appPort = 4000;
-var app = express();
-var trackController = require('./controllers/trackController');
-var loginController = require('./controllers/loginController');
-var bodyParser = require('body-parser');
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
+const session = require('express-session');
+const favicon = require('serve-favicon');
+const trackController = require('./controllers/trackController');
+const loginController = require('./controllers/loginController');
+const bodyParser = require('body-parser');
+const server = require('./config/server');
+
+const app = express();
+
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.use(express.static('./public'));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
 trackController(app);
 loginController(app);
+
 const passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
-app.listen(appPort);
+
+app.listen(server.port);
+
 console.log(`server listening`);
-console.log(`open app in your browser using http://localhost:${appPort}`);
+console.log(`open app in your browser using http://localhost:${server.port}`);
