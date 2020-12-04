@@ -1,7 +1,8 @@
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const db = require('../config/database');
 
-mongoose.connect('mongodb://localhost:27017/musicStore', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`mongodb://${db.host}:${db.port}/musicStore`, {useNewUrlParser: true, useUnifiedTopology: true});
 /*Replace the above connection string with the actual connection string of your MongoDB database*/
 const trackSchema = new mongoose.Schema({
     trackName: String,
