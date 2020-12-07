@@ -2,6 +2,7 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const favicon = require('serve-favicon');
+const database = require('./config/database');
 const trackController = require('./controllers/trackController');
 const loginController = require('./controllers/loginController');
 const bodyParser = require('body-parser');
@@ -23,7 +24,8 @@ const passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.listen(server.port);
-
-console.log(`server listening on port ${server.port}`);
-console.log(`open app using http://localhost:${server.port}`);
+database.init().then(() => {
+    app.listen(server.port);
+    console.log(`Listening on port ${server.port}`);
+    console.log(`Open app using http://localhost:${server.port}`);
+});
