@@ -225,4 +225,8 @@ dist
 !.vscode/extensions.json
 *.code-workspace
 
+# Cypress
+cypress/videos
+cypress/screenshots
+
 # End of https://www.toptal.com/developers/gitignore/api/node,vscode,intellij
