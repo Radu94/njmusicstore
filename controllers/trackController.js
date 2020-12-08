@@ -1,27 +1,8 @@
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const db = require('../config/database');
-
-mongoose.connect(`mongodb://${db.host}:${db.port}/musicStore`, {useNewUrlParser: true, useUnifiedTopology: true});
-/*Replace the above connection string with the actual connection string of your MongoDB database*/
-const trackSchema = new mongoose.Schema({
-    trackName: String,
-    artistName: String,
-    albumName: String,
-    albumYear: String,
-    albumGenre: String,
-    trackPrice: String
-});
-const Track = mongoose.model('Track', trackSchema);
-var userCartSchema = new mongoose.Schema({
-    username: String,
-    trackid: String,
-    trackname: String,
-    quantity: String,
-    unitprice: String
-});
-const CartItem = mongoose.model('userCart', userCartSchema);
+const Track = require('../models/trackSchema');
+const CartItem = require('../models/userCartSchema');
 const urlencodedParser = bodyParser.urlencoded({extended: false});
+
 module.exports = function (app) {
     app.get('/track', function (req, res) {
         Track.find({}, function (err, data) {

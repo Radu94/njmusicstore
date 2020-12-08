@@ -1,19 +1,7 @@
 const bodyParser = require('body-parser');
-const db = require('../config/database');
+const UserDetails = require('../models/userSchema');
 
 module.exports = function (app) {
-    /* MONGOOSE SETUP */
-    const mongoose = require('mongoose');
-    const uri = `mongodb://${db.host}:${db.port}/musicStore`;
-    console.log("connectiong to ", uri)
-    mongoose.connect(`mongodb://${db.host}:${db.port}/musicStore`, {useNewUrlParser: true, useUnifiedTopology: true});
-    /*Replace the above connection string with the actual connection string of your MongoDB database*/
-    const Schema = mongoose.Schema;
-    const UserDetail = new Schema({
-        username: String,
-        password: String
-    });
-    const UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
     /*  PASSPORT SETUP  START*/
     const passport = require('passport');
     app.use(passport.initialize());
@@ -78,4 +66,4 @@ module.exports = function (app) {
         req.logout();
         res.redirect('/');
     });
-}
+};
