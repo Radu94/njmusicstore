@@ -4,21 +4,25 @@
         <a class="navbar-brand" href="#">Music Library</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/index">Home</a></li>
+        <% if(username.length>0) { %>
+        <li class="<%= title  === 'Home' ? 'active':'' %>"><a href="/index?username=<%=username %>">Home</a></li>
+        <%} else{ %>
+          <li class="<%= title  === 'Home' ? 'active':'' %>"><a href="/index">Home</a></li>
+        <%} %>  
         <% if(username.length>0 && username==='admin'){%>
-          <li><a href='/track-add?username=<%=username %>'>Add Products</a></li>
+          <li class="<%= title  === 'Add Track' ? 'active':'' %>"><a href='/track-add?username=<%=username %>'>Add Products</a></li>
         <%}%>
         <% if(username.length>0 && username!=='admin'){%>
-          <li><a href='/track-list?username=<%=username %>'>Products List</a></li>
+          <li class="<%= title  === 'Product List' ? 'active':'' %>"><a href='/track-list?username=<%=username %>'>Products List</a></li>
         <%}%>
       </ul>
       <ul class="nav navbar-nav navbar-right">        
         <% if(username.length<=0){%>
-          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
+          <li class="<%= title  === 'Login' ? 'active':'' %>"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
         <%}%>
         <%if(username.length>0){%>          
           <li><span class="navbar-brand"> Welcome <%=username%> </span></li>
-          <li><a href='/cart?username=<%=username%>'><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+          <li class="<%= title  === 'Shopping Cart' ? 'active':'' %>"><a href='/cart?username=<%=username%>'><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
           <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         <%}%>
       </ul>
