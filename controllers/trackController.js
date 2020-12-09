@@ -1,24 +1,8 @@
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 
-/*Replace the above connection string with the actual connection string of your MongoDB database*/
-var trackSchema = new mongoose.Schema({
-    trackName: String,
-    artistName: String,
-    albumName: String,
-    albumYear: String,
-    albumGenre: String,
-    trackPrice: String
-});
-var Track = mongoose.model('Track', trackSchema);
-var userCartSchema = new mongoose.Schema({
-    username: String,
-    trackid: String,
-    trackname: String,
-    quantity: String,
-    unitprice: String
-});
-var CartItem = mongoose.model('userCart', userCartSchema);
+const Track = require('../models/track');
+const CartItem = require('../models/userCart');
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 module.exports = function (app) {
     app.get('/track', function (req, res) {
@@ -55,16 +39,16 @@ module.exports = function (app) {
         });
     });
     app.delete('/track/:_id', function (req, res) {
-        Track.find({ _id: req.params._id })
-            .remove(function (err, data) {
-                if (err) throw err;
+        Track.findByIdAndRemove({ _id: req.params._id })
+            .then((result) => {                
                 if (req.query.username != null) {
-                    res.render('track-add', { tracks: data, title: 'Add Track', username: req.query.username });
+                    res.render('track-add', { tracks: result, title: 'Add Track', username: req.query.username });
                 }
                 else {
-                    res.render('track-add', { tracks: data, title: 'Add Track', username: '' });
+                    res.render('track-add', { tracks: result, title: 'Add Track', username: '' });
                 }
-            });
+            })
+            .catch(err => console.log(err));
     });
     app.post('/track-add', urlencodedParser, function (req, res) {
         var newTrack = Track(req.body).save(function (err, data) {
@@ -101,15 +85,15 @@ module.exports = function (app) {
         });
     });
     app.delete('/cart/:_id', function (req, res) {
-        CartItem.find({ _id: req.params._id })
-            .remove(function (err, data) {
-                if (err) throw err;
+        CartItem.findByIdAndRemove({ _id: req.params._id })
+            .then((result) => {
                 if (req.query.username != null) {
-                    res.render('cart', { cartitems: data, title: 'Shopping Cart', username: req.query.username });
+                    res.render('cart', { cartitems: result, title: 'Shopping Cart', username: req.query.username });
                 }
                 else {
-                    res.render('cart', { cartitems: data, title: 'Shopping Cart', username: '' });
+                    res.render('cart', { cartitems: result, title: 'Shopping Cart', username: '' });
                 }
-            });
+            })
+            .catch(err => console.log(err));
     });
 };
