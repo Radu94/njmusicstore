@@ -3,6 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const favicon = require('serve-favicon');
 const database = require('./config/database');
+const cartController = require('./controllers/cartController');
 const trackController = require('./controllers/trackController');
 const loginController = require('./controllers/loginController');
 const bodyParser = require('body-parser');
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 trackController(app);
+cartController(app);
 loginController(app);
 
 const passport = require('passport');

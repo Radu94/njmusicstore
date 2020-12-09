@@ -18,7 +18,7 @@
         <%}%>
         <%if(username.length>0){%>
           <li><span class="navbar-brand" data-cy="welcome">Welcome <%=username%> </span></li>
-          <li><a href='/cart?username=<%=username%>'><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+          <li><a href='/cart?username=<%=username%>' datacy="shopping-cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
           <li><a href="/logout"><span class="glyphicon glyphicon-log-out" data-cy="logout-link"></span> Logout</a></li>
         <%}%>
       </ul>
