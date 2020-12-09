@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let trackSchema= new Schema({    
     trackName:String,
@@ -8,4 +8,4 @@ let trackSchema= new Schema({
     albumGenre:String,  
     trackPrice:String
 });
-module.exports = mongoose.model('Track',trackSchema);
+module.exports = mongoose.model("Track",trackSchema);
