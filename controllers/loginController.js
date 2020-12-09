@@ -1,17 +1,8 @@
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+
 module.exports = function (app) {
   /* MONGOOSE SETUP */
   const mongoose = require('mongoose');
-  const db_uri = 'mongodb+srv://test_user:test_pass@claudiacocioaba.ilhjc.mongodb.net/musicstore?retryWrites=true';
-  mongoose.connect(db_uri)
-    .then(result => {
-      console.log("connected!");
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  /*Replace the above connection string with the actual connection string of your MongoDB database*/
-
   const Schema = mongoose.Schema;
   const UserDetail = new Schema({
     username: String,

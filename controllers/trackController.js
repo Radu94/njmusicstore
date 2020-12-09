@@ -1,9 +1,6 @@
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-const db_uri = 'mongodb+srv://test_user:test_pass@claudiacocioaba.ilhjc.mongodb.net/musicstore?retryWrites=true';
-    
-mongoose.connect(db_uri);
 /*Replace the above connection string with the actual connection string of your MongoDB database*/
 var trackSchema = new mongoose.Schema({
     trackName: String,
