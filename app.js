@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express=require("express");
 const expressLayouts = require("express-ejs-layouts");
 const app=express();
@@ -22,7 +23,7 @@ app.use(routes);
 
 /* MONGOOSE SETUP */
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://mihai:mihai@cluster0.j9czx.mongodb.net/musicapp?retryWrites=true&w=majority",{ 
+mongoose.connect(`${process.env.DB_HOST}://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.j9czx.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,{ 
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
