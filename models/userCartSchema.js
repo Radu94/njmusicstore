@@ -8,7 +8,7 @@ const userCartSchema = new mongoose.Schema({
     unitprice: String
 });
 
-const collectionName = 'userCarts';
+const collectionName = 'userCart';
 
 module.exports = mongoose.model(collectionName, userCartSchema, collectionName);
 
