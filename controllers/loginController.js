@@ -1,14 +1,7 @@
 const bodyParser = require('body-parser');
 
 module.exports = function (app) {
-  /* MONGOOSE SETUP */
-  const mongoose = require('mongoose');
-  const Schema = mongoose.Schema;
-  const UserDetail = new Schema({
-    username: String,
-    password: String
-  });
-  const UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
+  const UserDetails = require('../models/userDetails');
 
   /*  PASSPORT SETUP  START*/
   const passport = require('passport');
