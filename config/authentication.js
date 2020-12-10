@@ -1,6 +1,7 @@
 const UserDetails = require('../models/userSchema');
 
 const configure = (passport) => {
+    /* https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize */
     passport.serializeUser(function (user, cb) {
         cb(null, user.id);
     });
