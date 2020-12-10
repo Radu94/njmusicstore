@@ -16,6 +16,7 @@
       "error",
       "single",
       { "avoidEscape": true }
-    ]
+    ],
+    "semi": [2, "always"]
   }
 }
