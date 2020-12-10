@@ -18,11 +18,7 @@ module.exports = function (app) {
     });
   });
   /* PASSPORT SETUP STOP */
-  app.post('/',
-    passport.authenticate('local', { failureRedirect: '/error' }),
-    function (req, res) {
-      res.redirect('/home', { username: req.user.username });
-    });
+  
   /* PASSPORT LOCAL AUTHENTICATION */
   const LocalStrategy = require('passport-local').Strategy;
   passport.use(new LocalStrategy(
