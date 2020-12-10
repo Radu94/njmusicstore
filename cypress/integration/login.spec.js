@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('Logging In', () => {
 
     context('Use of valid user credentials', () => {
