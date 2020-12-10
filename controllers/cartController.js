@@ -17,7 +17,6 @@ module.exports = function (app) {
         CartItem.find({username: req.query.username}, function (err, data) {
             if (err) throw err;
             if (req.query.username != null) {
-                //console.log(data);
                 res.render('cart', {cartitems: data, title: 'Shopping Cart', username: req.query.username});
             } else {
                 res.render('cart', {cartitems: data, title: 'Shopping Cart', username: ''});

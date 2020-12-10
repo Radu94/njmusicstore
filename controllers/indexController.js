@@ -3,6 +3,10 @@ module.exports = function (app) {
         res.render('index', {username: '', title: 'Home'});
     });
     app.get('/index', function (req, res) {
-        res.render('index', {username: '', title: 'Home'});
+        if(req.user) {
+            res.render('index', {username: req.user.username, title: 'Home'});
+        } else {
+            res.render('index', {username: '', title: 'Home'});
+        }
     });
 };
