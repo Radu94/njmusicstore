@@ -17,6 +17,7 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
