@@ -2,14 +2,9 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const favicon = require('serve-favicon');
-const database = require('./config/database');
-const indexController = require('./controllers/indexController');
-const cartController = require('./controllers/cartController');
-const trackController = require('./controllers/trackController');
-const loginController = require('./controllers/loginController');
+const { authentication, database, dotenv } = require('./config');
+const { indexController, cartController,  trackController,  loginController } = require('./controllers');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const authentication = require('./config/authentication');
 const passport = require('passport');
 
 dotenv.config();
