@@ -23,7 +23,7 @@ module.exports = function (app, passport) {
     });
 
     app.post('/register', function (req, res) {
-        console.log('looking for => ', JSON.stringify(req.body));
+        // console.log('looking for => ', JSON.stringify(req.body));
             UserDetails.findOne({
                 username: req.body.username
             }, function (err, user) {
@@ -32,12 +32,15 @@ module.exports = function (app, passport) {
                 }
                 if(user)  {
                     res.render('register', {username: '', errormessage: 'User is already taken !', title: 'Register'});
-                    console.log('found => ', JSON.stringify(user));
+                    // console.log('found => ', JSON.stringify(user));
                 }
 
                 if (!user) {
                     UserDetails(req.body).save(function (err, data) {
-                        if (err) throw err;
+                        if (err) {
+                            // console.log('found => ', JSON.stringify(err));
+                            res.render('register',{username: '', errormessage: 'User is taken or password is empty', title: 'Register'});
+                        }
                         if (data) {
                             res.render('index', {username: data.username, title: 'Home'});
                         }
