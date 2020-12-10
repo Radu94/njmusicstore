@@ -4,7 +4,7 @@ const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = function (app) {
     app.post('/cart', urlencodedParser, function (req, res) {
-        var newCartItem = CartItem(req.body).save(function (err, data) {
+        CartItem(req.body).save(function (err, data) {
             if (err) throw err;
             if (req.query.username != null) {
                 res.render('cart', {cartitems: data, title: 'Shopping Cart', username: req.query.username});
