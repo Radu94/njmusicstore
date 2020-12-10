@@ -1,0 +1,5 @@
+{
+  "ignore": [
+    "cypress/integration/*.js"
+  ]
+}
