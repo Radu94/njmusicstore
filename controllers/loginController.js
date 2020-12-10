@@ -13,7 +13,7 @@ module.exports = function (app) {
     cb(null, user.id);
   });
   passport.deserializeUser(function (id, cb) {
-    User.findById(id, function (err, user) {
+    UserDetails.findById(id, function (err, user) {
       cb(err, user);
     });
   });
@@ -33,7 +33,6 @@ module.exports = function (app) {
         if (err) {
           return done(err);
         }
-
         if (!user) {
           return done(null, false);
         }
@@ -44,12 +43,23 @@ module.exports = function (app) {
       });
     }
   ));
+
   app.get('/', function (req, res) {
-    res.render('index', { username: '', title: 'Home' });
+    if (req.user) {
+      res.render('index', { username: req.user.username, title: 'Home' });
+    } else {
+      res.render('index', { username: '', title: 'Home' });
+    }    
   });
+
   app.get('/index', function (req, res) {
-    res.render('index', { username: '', title: 'Home' });
+    if (req.user) {
+      res.render('index', { username: req.user.username, title: 'Home' });
+    } else {
+      res.render('index', { username: '', title: 'Home' });
+    }
   });
+
   // Go to login page
   app.get('/login', function (req, res) {
     res.render('login', { username: '', title: 'Login', errormessage: '' });

@@ -7,6 +7,7 @@ const loginController = require('./controllers/loginController');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const loginRoutes = require('./routes/loginRoutes');
 
 const app = express();
 
@@ -18,7 +19,9 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
+app.use(session({secret: 'some secret'}))
 app.use(passport.session());
+app.use(loginRoutes);
 
 trackController(app);
 loginController(app);
@@ -28,7 +31,7 @@ const db_password = 'test_pass';
 const cluster_url = 'claudiacocioaba.ilhjc.mongodb.net';
 const db_name = 'musicstore';
 const db_uri = `mongodb+srv://${db_user}:${db_password}@${cluster_url}/${db_name}?retryWrites=true`;   
- 
+
 mongoose.connect(db_uri)
     .then(result => {
         console.log("connected!");
