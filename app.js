@@ -9,6 +9,8 @@ const trackController = require('./controllers/trackController');
 const loginController = require('./controllers/loginController');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const authentication = require('./config/authentication');
+const passport = require('passport');
 
 dotenv.config();
 
@@ -21,14 +23,14 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-indexController(app);
-loginController(app);
-trackController(app);
-cartController(app);
-
-const passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
+authentication.configure(passport);
+
+loginController(app, passport);
+indexController(app);
+trackController(app);
+cartController(app);
 
 database.init().then(() => {
 

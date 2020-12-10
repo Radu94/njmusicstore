@@ -1,52 +1,16 @@
-const bodyParser = require('body-parser');
-const UserDetails = require('../models/userSchema');
-
-module.exports = function (app) {
-    /*  PASSPORT SETUP  START*/
-    const passport = require('passport');
-    app.use(passport.initialize());
-    app.use(passport.session());
+module.exports = function (app, passport) {
     app.get('/success', (req, res) => res.render('index', {username: req.query.username, title: 'Home'}));
     app.get('/error', (req, res) => res.render('login', {
         username: '',
         title: 'Login',
         errormessage: 'An error occured while logging in. Please check your username and password!'
     }));
-    passport.serializeUser(function (user, cb) {
-        cb(null, user.id);
-    });
-    passport.deserializeUser(function (id, cb) {
-        User.findById(id, function (err, user) {
-            cb(err, user);
-        });
-    });
-    /* PASSPORT SETUP STOP */
+
     app.post('/',
         passport.authenticate('local', {failureRedirect: '/error'}),
         function (req, res) {
             res.redirect('/home', {username: req.user.username});
         });
-    /* PASSPORT LOCAL AUTHENTICATION */
-    const LocalStrategy = require('passport-local').Strategy;
-    passport.use(new LocalStrategy(
-        function (username, password, done) {
-            UserDetails.findOne({
-                username: username
-            }, function (err, user) {
-                if (err) {
-                    return done(err);
-                }
-
-                if (!user) {
-                    return done(null, false);
-                }
-                if (user.password != password) {
-                    return done(null, false);
-                }
-                return done(null, user);
-            });
-        }
-    ));
 
     app.get('/login', function (req, res) {
         res.render('login', {username: '', title: 'Login', errormessage: ''});
