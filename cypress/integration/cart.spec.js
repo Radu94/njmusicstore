@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('Shopping cart for', () => {
 
     context('User 1', () => {

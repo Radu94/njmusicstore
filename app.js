@@ -7,7 +7,9 @@ const cartController = require('./controllers/cartController');
 const trackController = require('./controllers/trackController');
 const loginController = require('./controllers/loginController');
 const bodyParser = require('body-parser');
-const server = require('./config/server');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 
@@ -27,7 +29,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 database.init().then(() => {
-    app.listen(server.port);
-    console.log(`Listening on port ${server.port}`);
-    console.log(`Open app using http://localhost:${server.port}`);
+
+    const port = process.env.APP_PORT || 4000;
+
+    app.listen(port);
+
+    console.log(`Listening on port ${port}`);
+    console.log(`Open app using http://localhost:${port}`);
 });
