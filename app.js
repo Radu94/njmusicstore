@@ -6,6 +6,7 @@ const { authentication, database, dotenv } = require('./config');
 const { indexController, cartController, loginController , registrationController, trackController } = require('./controllers');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const simpleLogger = require('./middleware/simpleLogger');
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: fals
 app.use(passport.initialize());
 app.use(passport.session());
 authentication.configure(passport);
+app.use(simpleLogger);
 
 loginController(app, passport);
 registrationController(app);
