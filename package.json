@@ -18,6 +18,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
+    "chalk": "^4.1.0",
     "dotenv": "^8.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
@@ -34,6 +35,9 @@
   },
   "devDependencies": {
     "cypress": "~6.1.0",
-    "eslint": "^7.15.0"
+    "eslint": "~6.6.0",
+    "eslint-plugin-import": "2.18.2",
+    "prettier-eslint-cli": "5.0.0",
+    "eslint-plugin-cypress": "^2.11.2"
   }
 }

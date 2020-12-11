@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const trackSchema = new mongoose.Schema({
-    trackName: String,
-    artistName: String,
-    albumName: String,
-    albumYear: String,
-    albumGenre: String,
-    trackPrice: String
+  trackName: String,
+  artistName: String,
+  albumName: String,
+  albumYear: String,
+  albumGenre: String,
+  trackPrice: String
 });
 const collectionName = 'tracks';
 

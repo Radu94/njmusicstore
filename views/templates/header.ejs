@@ -14,6 +14,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if(username.length<=0){%>
+          <li><a href="/register"><span class="glyphicon glyphicon-user" data-cy="register-link"></span> Register </a></li>
           <li><a href="/login"><span class="glyphicon glyphicon-log-in" data-cy="login-link"></span> Login </a></li>
         <%}%>
         <%if(username.length>0){%>
