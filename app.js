@@ -3,7 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 // const favicon = require('serve-favicon');
 const { authentication, database, dotenv } = require('./config');
-const { indexController, cartController,  trackController,  loginController } = require('./controllers');
+const { indexController, cartController, loginController , registrationController, trackController } = require('./controllers');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
@@ -24,6 +24,7 @@ app.use(passport.session());
 authentication.configure(passport);
 
 loginController(app, passport);
+registrationController(app);
 indexController(app);
 trackController(app);
 cartController(app);
