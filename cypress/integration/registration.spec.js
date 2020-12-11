@@ -33,7 +33,7 @@ describe('Registration Of', () => {
                 cy.get('[data-cy=welcome]').should('not.exist');
             });
 
-        it.only('should succeed for a new user account', () => {
+        it('should succeed for a new user account', () => {
             const account = {
                     username: `user1_${Date.now()}`,
                     password: `pass1_${Date.now()}`
