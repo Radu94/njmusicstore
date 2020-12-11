@@ -21,9 +21,7 @@ module.exports = function (app) {
                     if (err) {
                         res.render('register',{username: '', errormessage: 'User is taken or password is empty', title: 'Register'});
                     }
-                    if (data) {
-                        res.render('index', {username: data.username, title: 'Home'});
-                    }
+                    res.render('index', {username: data.username, title: 'Home'});
                 });
             }
         });

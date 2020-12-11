@@ -32,6 +32,22 @@ describe('Registration Of', () => {
                 cy.get('[data-cy=error-message]').should('contain.text', 'Error! User is already taken !');
                 cy.get('[data-cy=welcome]').should('not.exist');
             });
+
+        it.only('should succeed for a new user account', () => {
+            const account = {
+                    username: `user1_${Date.now()}`,
+                    password: `pass1_${Date.now()}`
+                };
+
+            cy.get('[data-cy="register-link"]').click();
+
+            cy.get('[data-cy=username]').type(account.username);
+            cy.get('[data-cy=password]').type(account.password);
+            cy.get('[data-cy=register-btn]').click();
+
+            cy.get('[data-cy=welcome]').should('have.text', `Welcome ${account.username} `);
+            cy.get('[data-cy=logout-link]').should('be.visible');
+        });
     });
 
 
