@@ -45,7 +45,7 @@ module.exports = function (app) {
             });
     });
     app.post('/track-add', urlencodedParser, function (req, res) {
-        var newTrack = Track(req.body).save(function (err, data) {
+        Track(req.body).save(function (err, data) {
             if (err) throw err;
             if (req.query.username != null) {
                 res.render('track-add', {tracks: data, title: 'Track', username: req.query.username});

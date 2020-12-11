@@ -1,7 +1,7 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
-const favicon = require('serve-favicon');
+// const favicon = require('serve-favicon');
 const { authentication, database, dotenv } = require('./config');
 const { indexController, cartController,  trackController,  loginController } = require('./controllers');
 const bodyParser = require('body-parser');

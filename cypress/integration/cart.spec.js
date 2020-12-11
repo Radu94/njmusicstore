@@ -5,7 +5,7 @@ describe('Shopping cart for', () => {
     context('User 1', () => {
 
         beforeEach(() => {
-            cy.visit("/cart?username=user1");
+            cy.visit('/cart?username=user1');
         });
 
         it('should have two items', () => {

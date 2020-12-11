@@ -19,7 +19,7 @@ describe('Logging In', () => {
         ];
 
         beforeEach(() => {
-            cy.visit("/");
+            cy.visit('/');
         });
 
         accounts.forEach( account => {
@@ -33,7 +33,7 @@ describe('Logging In', () => {
                 cy.get('[data-cy=welcome]').should('have.text', `Welcome ${account.username} `);
             });
         });
-    })
+    });
 
 
 });

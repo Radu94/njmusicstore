@@ -19,7 +19,7 @@ describe('Registration Of', () => {
         ];
 
         beforeEach(() => {
-            cy.visit("/");
+            cy.visit('/');
         });
 
             it(`should fail for an existing user account [${accounts[0].username}]`, () => {

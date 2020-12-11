@@ -15,7 +15,7 @@ const init = async () => {
     /* MONGOOSE SETUP */
     const connectionString = `mongodb://${db.host}:${db.port}/musicStore`;
 
-    await mongoose.connect(connectionString,options).catch(err => {
+    await mongoose.connect(connectionString,options).catch( () => {
         console.log(`Error connecting to mongo ${connectionString}`);
     });
 };
