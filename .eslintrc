@@ -1,5 +1,8 @@
 {
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:cypress/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 2017,
     "sourceType": "module"
@@ -7,7 +10,9 @@
   "env": {
     "es6": true,
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "jquery": true,
+    "cypress/globals": true
   },
   "rules": {
     "no-var": "error",
@@ -17,6 +22,14 @@
       "single",
       { "avoidEscape": true }
     ],
-    "semi": [2, "always"]
-  }
+    "semi": [2, "always"],
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error"
+  },
+  "plugins": [
+    "cypress"
+  ]
 }
