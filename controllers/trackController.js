@@ -1,7 +1,7 @@
 const Track = require('../models/track');
 const CartItem = require('../models/cart');
 
-exports.trackList = (req, res) => {
+trackList = (req, res) => {
 	Track.find({}, function (err, data) {
 		if (err) throw err;
 		if (req.query.username != null) {
@@ -20,7 +20,7 @@ exports.trackList = (req, res) => {
 	});
 };
 
-exports.trackAddPage = (req, res) => {
+trackAddPage = (req, res) => {
 	Track.find({}, function (err, data) {
 		if (err) throw err;
 		if (req.query.username != null) {
@@ -39,7 +39,7 @@ exports.trackAddPage = (req, res) => {
 	});
 };
 
-exports.trackAddAction = (req, res) => {
+trackAddAction = (req, res) => {
 	Track(req.body).save(function (err, data) {
 		if (err) throw err;
 		if (req.query.username != null) {
@@ -58,7 +58,7 @@ exports.trackAddAction = (req, res) => {
 	});
 };
 
-exports.trackDelete = (req, res) => {
+trackDelete = (req, res) => {
 	Track.find({ _id: req.params._id }).deleteOne(function (err, data) {
 		if (err) throw err;
 		if (req.query.username != null) {
@@ -77,7 +77,7 @@ exports.trackDelete = (req, res) => {
 	});
 };
 
-exports.cartGet = (req, res) => {
+cartGet = (req, res) => {
 	CartItem.find({ username: req.query.username }, function (err, data) {
 		if (err) throw err;
 		if (req.query.username != null) {
@@ -96,7 +96,7 @@ exports.cartGet = (req, res) => {
 	});
 };
 
-exports.cartAddItem = (req, res) => {
+cartAddItem = (req, res) => {
 	CartItem(req.body).save(function (err, data) {
 		if (err) throw err;
 		if (req.query.username != null) {
@@ -115,7 +115,7 @@ exports.cartAddItem = (req, res) => {
 	});
 };
 
-exports.cartDeleteItem = (req, res) => {
+cartDeleteItem = (req, res) => {
 	CartItem.find({ _id: req.params._id }).deleteOne(function (err, data) {
 		if (err) throw err;
 		if (req.query.username != null) {
@@ -132,4 +132,14 @@ exports.cartDeleteItem = (req, res) => {
 			});
 		}
 	});
+};
+
+module.exports = {
+	trackList,
+	trackAddPage,
+	trackAddAction,
+	trackDelete,
+	cartGet,
+	cartAddItem,
+	cartDeleteItem,
 };

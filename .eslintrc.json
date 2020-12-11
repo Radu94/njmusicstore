@@ -1,16 +1,53 @@
 {
 	"env": {
-		"node": true,
-		"browser": true,
 		"commonjs": true,
-		"es2021": true
+		"es6": true,
+		"node": true,
+		"jest": true
 	},
-	"extends": ["eslint:recommended", "prettier"],
+	"extends": ["airbnb-base"],
+	"globals": {
+		"Atomics": "readonly",
+		"SharedArrayBuffer": "readonly"
+	},
 	"parserOptions": {
-		"ecmaVersion": 12
+		"ecmaVersion": 2018
 	},
 	"rules": {
-		"no-var": "error",
-		"prefer-const": "error"
+		"max-len": ["error", { "code": 140 }],
+		"no-template-curly-in-string": "off",
+		"arrow-body-style": "off",
+		"no-restricted-syntax": "off",
+		"no-use-before-define": "off",
+		"no-param-reassign": "off",
+		"guard-for-in": "off",
+		"no-tabs": "off",
+		"radix": "off",
+		"indent": ["warn", 2],
+		"comma-dangle": [
+			"error",
+			{
+				"objects": "never"
+			}
+		],
+		"prefer-destructuring": [
+			"error",
+			{
+				"VariableDeclarator": {
+					"array": false,
+					"object": false
+				},
+				"AssignmentExpression": {
+					"array": true,
+					"object": false
+				}
+			},
+			{
+				"enforceForRenamedProperties": false
+			}
+		],
+		"no-console": "warn",
+		"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+		"object-shorthand": [2, "consistent"]
 	}
 }
