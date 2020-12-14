@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const loginRoutes = require('./routes/loginRoutes');
+const trackRoutes = require('./routes/trackRoutes');
 
 const app = express();
 
@@ -24,8 +25,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 loginController.passportSetup();
 app.use(loginRoutes);
+app.use(trackRoutes);
 
-trackController(app);
+//trackController(app);
 
 const db_user = 'test_user';
 const db_password = 'test_pass';
