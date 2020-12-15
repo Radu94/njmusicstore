@@ -22,6 +22,6 @@ router.post('/cart', urlencodedParser, trackController.postCart);
 
 router.get('/cart', trackController.getCart);
 
-router.delete('/cart/:_id', trackController.deleteCart);
+router.delete('/cart/:_id', trackController.deleteFromCart);
 
 module.exports = router;

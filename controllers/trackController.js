@@ -1,89 +1,100 @@
 const Track = require('../models/track');
 const CartItem = require('../models/userCart');
 
+const renderPage = function(err, req, res, templateName, templateObj ) {
+    const username = req.query.username;
+    if (err) throw err;
+    if (username != null) {
+        res.render(templateName, templateObj);
+    }
+    else {
+        templateObj.username = '';
+        res.render(templateName, templateObj);
+    }
+};
+
 exports.getTracks = function(req, res) {
-    Track.find({}, function (err, data) {
-        if (err) throw err;
-        if (req.query.username != null) {
-            res.render('track-list', { tracks: data, title: 'Product List', username: req.query.username });
-        }
-        else {
-            res.render('track-list', { tracks: data, title: 'Product List', username: '' });
-        }
+    Track.find({}, function (err, data) { 
+        const templateName = 'track-list';
+        const templateObj = {
+            tracks: data, 
+            title: 'Product List', 
+            username: req.query.username 
+        };
+
+        renderPage(err, req, res, templateName, templateObj);
     });
 };
 
 exports.getAddTrack = function(req, res) {
     Track.find({}, function (err, data) {
-        if (err) throw err;
-        if (req.query.username != null) {
-            res.render('track-add', { tracks: data, title: 'Add Track', username: req.query.username });
-        }
-        else {
-            res.render('track-add', { tracks: data, title: 'Add Track', username: '' });
-        }
+        const templateName = 'track-add';
+        const templateObj = {
+            tracks: data, 
+            title: 'Add Track', 
+            username: req.query.username 
+        };
+        renderPage(err, req, res, templateName, templateObj);
     });
 };
 
 exports.deleteTrack = function(req, res) {
-    Track.findByIdAndRemove({ _id: req.params._id })
-            .then((result) => {                
-                if (req.query.username != null) {
-                    res.render('track-add', { tracks: result, title: 'Add Track', username: req.query.username });
-                }
-                else {
-                    res.render('track-add', { tracks: result, title: 'Add Track', username: '' });
-                }
-            })
-            .catch(err => console.log(err));
+    Track.findByIdAndRemove({ _id: req.params._id }, function (err, data) {
+        const templateName = 'track-add';
+        const templateObj = {
+            tracks: data, 
+            title: 'Add Track', 
+            username: req.query.username 
+        };
+        renderPage(err, req, res, templateName, templateObj);
+    });
 };
 
 exports.postAddTrack = function(req, res) {
-    var newTrack = Track(req.body).save(function (err, data) {
-        if (err) throw err;
-        if (req.query.username != null) {
-            res.render('track-add', { tracks: data, title: 'Track', username: req.query.username });
-        }
-        else {
-            res.render('track-add', { tracks: data, title: 'Track', username: '' });
-        }
+    Track(req.body).save(function (err, data) {
+        const templateName = 'track-add';
+        const templateObj = {
+            tracks: data, 
+            title: 'Track', 
+            username: req.query.username 
+        };
+        renderPage(err, req, res, templateName, templateObj);        
     });
 };
 
 exports.postCart = function(req, res) {
-    var newCartItem = CartItem(req.body).save(function (err, data) {
-        if (err) throw err;
-        if (req.query.username != null) {
-            res.render('cart', { cartitems: data, title: 'Shopping Cart', username: req.query.username });
-        }
-        else {
-            res.render('cart', { cartitems: data, title: 'Shopping Cart', username: '' });
-        }
+    CartItem(req.body).save(function (err, data) {
+        const templateName = 'cart';
+        const templateObj = {
+            cartitems: data, 
+            title: 'Shopping Cart', 
+            username: req.query.username 
+        };
+        renderPage(err, req, res, templateName, templateObj);         
     });
 };
 
 exports.getCart = function(req, res) {
     CartItem.find({ username: req.query.username }, function (err, data) {
-        if (err) throw err;
-        if (req.query.username != null) {
-            //console.log(data);
-            res.render('cart', { cartitems: data, title: 'Shopping Cart', username: req.query.username });
-        }
-        else {
-            res.render('cart', { cartitems: data, title: 'Shopping Cart', username: '' });
-        }
+        const templateName = 'cart';
+        const templateObj = {
+            cartitems: data, 
+            title: 'Shopping Cart', 
+            username: req.query.username 
+        };
+        renderPage(err, req, res, templateName, templateObj);        
     });
 };
 
-exports.deleteCart = function(req, res) {
-    CartItem.findByIdAndRemove({ _id: req.params._id })
-            .then((result) => {
-                if (req.query.username != null) {
-                    res.render('cart', { cartitems: result, title: 'Shopping Cart', username: req.query.username });
-                }
-                else {
-                    res.render('cart', { cartitems: result, title: 'Shopping Cart', username: '' });
-                }
-            })
-            .catch(err => console.log(err));
+exports.deleteFromCart = function(req, res) {
+    CartItem.findByIdAndRemove({ _id: req.params._id }, function (err, data) {
+        const templateName = 'cart';
+        const templateObj = {
+            cartitems: data, 
+            title: 'Shopping Cart', 
+            username: req.query.username 
+        };
+        renderPage(err, req, res, templateName, templateObj);
+
+    });           
 };
