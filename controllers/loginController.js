@@ -1,16 +1,3 @@
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-
-const UserDetails = require('../models/userDetails');
-const auth = require('./auth');
-
-exports.passportSetup = function () {
-  passport.serializeUser(auth.serializerHandler);
-  passport.deserializeUser(auth.deserializerHandler);
-
-  const authenticateUserStrategy = new LocalStrategy(auth.authenticateUser);
-  passport.use(authenticateUserStrategy);
-};
 
 exports.getSuccessLogin = function(req, res) {
   res.render('index', { username: req.query.username, title: 'Home' });

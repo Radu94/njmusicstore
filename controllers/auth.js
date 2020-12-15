@@ -1,6 +1,10 @@
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
 const UserDetails = require('../models/userDetails');
 
-exports.authenticateUser = function (username, password, done) {
+
+const authenticateUser = function (username, password, done) {
     UserDetails.findOne({
       username: username
     }, function (err, user) {
@@ -17,12 +21,24 @@ exports.authenticateUser = function (username, password, done) {
     });  
 };
 
-exports.serializerHandler = function(user, cb) {
+const serializerHandler = function(user, cb) {
   cb(null, user.id);
 };
 
-exports.deserializerHandler = function(id, cb) {
+const deserializerHandler = function(id, cb) {
   UserDetails.findById(id, function (err, user) {
     cb(err, user);
   });
 };
+
+exports.passportSetup = function () {
+  passport.serializeUser(serializerHandler);
+  passport.deserializeUser(deserializerHandler);
+
+  const authenticateUserStrategy = new LocalStrategy(authenticateUser);
+  passport.use(authenticateUserStrategy);
+};
+
+
+
+

@@ -2,13 +2,13 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const favicon = require('serve-favicon');
-const trackController = require('./controllers/trackController');
 const loginController = require('./controllers/loginController');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const loginRoutes = require('./routes/loginRoutes');
 const trackRoutes = require('./routes/trackRoutes');
+const auth = require('./controllers/auth');
 
 const app = express();
 
@@ -23,11 +23,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({secret: 'some secret'}))
 app.use(passport.initialize());
 app.use(passport.session());
-loginController.passportSetup();
+auth.passportSetup();
 app.use(loginRoutes);
 app.use(trackRoutes);
-
-//trackController(app);
 
 const db_user = 'test_user';
 const db_password = 'test_pass';
