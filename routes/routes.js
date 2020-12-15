@@ -1,9 +1,9 @@
-const passport = require('passport');
 const express = require('express');
 const loginController = require('../controllers/loginController');
 const trackController = require('../controllers/trackController');
 const router = express.Router();
 
+const f= (passport)=>{
 // Home page
 router.get('/', loginController.getIndex);
 router.get('/index', loginController.getIndex);
@@ -23,4 +23,7 @@ router.get('/error', loginController.getError);
 // Logout
 router.get('/logout', loginController.getLogout);
 
-module.exports = router;
+return router;
+}
+
+module.exports = {f};

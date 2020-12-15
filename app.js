@@ -10,13 +10,16 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 //passport
-const passport = require('./config/passport')
+const passport = require('passport');
+// Routes
+const {f} = require('/Users/vlad.petrenciuc/NodeCourse/njmusicstore/routes/routes.js');
+const mypassport = f(passport);
+app.use(mypassport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Routes
-const routes = require('./routes/routes');
-app.use(routes);
+
+
 
 const trackController=require('./controllers/trackController');
 const bodyParser=require('body-parser');
