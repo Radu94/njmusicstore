@@ -2,7 +2,6 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const favicon = require('serve-favicon');
-const loginController = require('./controllers/loginController');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
