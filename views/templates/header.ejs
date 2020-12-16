@@ -4,7 +4,14 @@
         <a class="navbar-brand" href="#">Music Library</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/index">Home</a></li>
+
+        <% if(username.length>0){%>
+          <li class="active"><a href="/success?username=<%=username %>">Home</a></li>
+        <%}%>
+        <% if(username.length<=0){%>
+          <li class="active"><a href="/index">Home</a></li>
+        <%}%>
+
         <% if(username.length>0 && username==='admin'){%>
           <li><a href='/track-add?username=<%=username %>'>Add Products</a></li>
         <%}%>
