@@ -1,9 +1,9 @@
 
-exports.getSuccessLogin = function(req, res) {
+const getSuccessLogin = function(req, res) {
   res.render('index', { username: req.query.username, title: 'Home' });
 };
 
-exports.getErrorLogin = function(req, res) {
+const getErrorLogin = function(req, res) {
   res.render('login', 
     { username: '', 
       title: 'Login', 
@@ -11,7 +11,7 @@ exports.getErrorLogin = function(req, res) {
     });
 };
 
-exports.getRootPath = function(req, res) {
+const getRootPath = function(req, res) {
   if (req.user) {
     res.render('index', { username: req.user.username, title: 'Home' });
   } else {
@@ -19,7 +19,7 @@ exports.getRootPath = function(req, res) {
   }    
 };
 
-exports.getIndex = function(req, res) {
+const getIndex = function(req, res) {
   if (req.user) {
     res.render('index', { username: req.user.username, title: 'Home' });
   } else {
@@ -27,15 +27,25 @@ exports.getIndex = function(req, res) {
   }
 };
 
-exports.getLoginPage = function(req, res) {
+const getLoginPage = function(req, res) {
   res.render('login', { username: '', title: 'Login', errormessage: '' });
 };
 
-exports.postLoginPage = function(req, res) {
+const postLoginPage = function(req, res) {
   res.redirect('/success?username=' + req.user.username);
 };
 
-exports.getLogout = function(req, res) {
+const getLogout = function(req, res) {
   req.logout();
   res.redirect('/');
+};
+
+module.exports = {
+  getSuccessLogin,
+  getErrorLogin,
+  getRootPath,
+  getIndex,
+  getLoginPage,
+  postLoginPage,
+  getLogout
 };

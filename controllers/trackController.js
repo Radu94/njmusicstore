@@ -13,7 +13,7 @@ const renderPage = function(err, req, res, templateName, templateObj ) {
     }
 };
 
-exports.getTracks = function(req, res) {
+const getTracks = function(req, res) {
     Track.find({}, function (err, data) { 
         const templateName = 'track-list';
         const templateObj = {
@@ -26,7 +26,7 @@ exports.getTracks = function(req, res) {
     });
 };
 
-exports.getAddTrack = function(req, res) {
+const getAddTrack = function(req, res) {
     Track.find({}, function (err, data) {
         const templateName = 'track-add';
         const templateObj = {
@@ -38,7 +38,7 @@ exports.getAddTrack = function(req, res) {
     });
 };
 
-exports.deleteTrack = function(req, res) {
+const deleteTrack = function(req, res) {
     Track.findByIdAndRemove({ _id: req.params._id }, function (err, data) {
         const templateName = 'track-add';
         const templateObj = {
@@ -50,7 +50,7 @@ exports.deleteTrack = function(req, res) {
     });
 };
 
-exports.postAddTrack = function(req, res) {
+const postAddTrack = function(req, res) {
     Track(req.body).save(function (err, data) {
         const templateName = 'track-add';
         const templateObj = {
@@ -62,7 +62,7 @@ exports.postAddTrack = function(req, res) {
     });
 };
 
-exports.postCart = function(req, res) {
+const postCart = function(req, res) {
     CartItem(req.body).save(function (err, data) {
         const templateName = 'cart';
         const templateObj = {
@@ -74,7 +74,7 @@ exports.postCart = function(req, res) {
     });
 };
 
-exports.getCart = function(req, res) {
+const getCart = function(req, res) {
     CartItem.find({ username: req.query.username }, function (err, data) {
         const templateName = 'cart';
         const templateObj = {
@@ -86,7 +86,7 @@ exports.getCart = function(req, res) {
     });
 };
 
-exports.deleteFromCart = function(req, res) {
+const deleteFromCart = function(req, res) {
     CartItem.findByIdAndRemove({ _id: req.params._id }, function (err, data) {
         const templateName = 'cart';
         const templateObj = {
@@ -97,4 +97,14 @@ exports.deleteFromCart = function(req, res) {
         renderPage(err, req, res, templateName, templateObj);
 
     });           
+};
+
+module.exports = {
+    getTracks,
+    getAddTrack,
+    deleteTrack,
+    postAddTrack,
+    postCart,
+    getCart,
+    deleteFromCart
 };
