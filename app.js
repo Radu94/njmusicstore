@@ -12,10 +12,20 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-trackController(app);
-loginController(app);
 const passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
+
+const dotenv = require('dotenv');
+dotenv.config();
+
+const routes =require('./routes/routes')
+app.use(routes);
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://' + process.env.MONGOUSER + ':' + process.env.MONGOPASSWORD + '@cluster0.jlrkv.mongodb.net/'+process.env.MONGODBNAME+'?retryWrites=true&w=majority',{ useNewUrlParser: true}).catch((err) => {
+  console.log(err);
+});
+
 app.listen(4000);
 console.log('server listening');
