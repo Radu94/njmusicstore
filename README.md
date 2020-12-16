@@ -1,4 +1,5 @@
 # njmusicstore
+
 A simple nodejs music store sample project using nodejs-express-mongodb
 
 Steps:
@@ -15,7 +16,7 @@ Steps:
 
 5. In your MongoDB database create the tables as per the schema in the controllers and in the Users table create the logins and passwords as per the readme.docx Logins section information.
 
-6. Run the command "nodemon app" 
+6. Run the command "nodemon app"
 
 7. Navigate to http://localhost:4000 to login.
 
