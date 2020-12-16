@@ -1,4 +1,4 @@
-#track-table{
+#track-table {
     position: relative;
     width: 95%;
     background: #090d13;
@@ -6,21 +6,24 @@
     padding: 20px;
     box-sizing: border-box;
 }
-#track-table form:after{
+
+#track-table form:after {
     margin: 0;
-    content: '';
+    content: "";
     display: block;
     clear: both;
 }
-input[type="text"]{
+
+input[type="text"] {
     width: 30%;
-    padding: 10px;    
+    padding: 10px;
     border: 1;
     float: left;
     font-size: 15px;
     color: #989898;
 }
-button{
+
+button {
     padding: 10px;
     width: 30%;
     float: left;
@@ -31,63 +34,74 @@ button{
     cursor: pointer;
     font-size: 20px;
 }
+
 .footer {
     padding: 10px;
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 100%;      
-    text-align: center;    
-  }
-  body, html{
+    width: 100%;
+    text-align: center;
+}
+
+body, html {
     height: 100%;
     background-repeat: no-repeat;
     background-color: #ffffff;
-    font-family: tahoma;    
+    font-family: tahoma;
 }
-.main{
+
+.main {
     margin-top: 70px;
 }
-h1.title { 
-   font-size: 50px;
-   font-family: 'Passion One', cursive; 
-   font-weight: 400; 
+
+h1.title {
+    font-size: 50px;
+    font-family: "Passion One", cursive;
+    font-weight: 400;
 }
-hr{
-   width: 10%;
-   color: #fff;
+
+hr {
+    width: 10%;
+    color: #fff;
 }
-.form-group{
-   margin-bottom: 15px;
+
+.form-group {
+    margin-bottom: 15px;
 }
-label{
-   margin-bottom: 15px;
+
+label {
+    margin-bottom: 15px;
 }
-input,
-input::-webkit-input-placeholder {
-   font-size: 11px;
-   padding-top: 3px;
+
+input, input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
 }
-.main-login{
+
+.main-login {
     background-color: #fff;
-   /* shadows and rounded borders */
-   -moz-border-radius: 2px;
-   -webkit-border-radius: 2px;
-   border-radius: 2px;
-   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
-.main-center{
+
+.main-center {
     margin-top: 30px;
     margin: 0 auto;
     max-width: 330px;
     padding: 40px 40px;
 }
-.login-button{
-   margin-top: 5px;
+
+.login-button {
+    margin-top: 5px;
 }
-.login-register{
-   font-size: 11px;
-   text-align: center;
+
+.login-register {
+    font-size: 11px;
+    text-align: center;
 }
