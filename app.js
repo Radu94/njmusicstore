@@ -8,6 +8,9 @@ const mongoose = require('mongoose');
 const loginRoutes = require('./routes/loginRoutes');
 const trackRoutes = require('./routes/trackRoutes');
 const auth = require('./controllers/auth');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 
@@ -19,24 +22,19 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(session({secret: 'some secret'}))
+app.use(session({secret: process.env.SESSION_SECRET}));
 app.use(passport.initialize());
 app.use(passport.session());
 auth.passportSetup();
+
 app.use(loginRoutes);
 app.use(trackRoutes);
 
-const db_user = 'test_user';
-const db_password = 'test_pass';
-const cluster_url = 'claudiacocioaba.ilhjc.mongodb.net';
-const db_name = 'musicstore';
-const db_uri = `mongodb+srv://${db_user}:${db_password}@${cluster_url}/${db_name}?retryWrites=true`;   
+const db_uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.CLUSTER_URL}/${process.env.DB_NAME}?retryWrites=true`;   
 
 mongoose.connect(db_uri)
     .then(result => {
-        console.log("connected!");
-        app.listen(4000);
-        console.log('server listening');
+        app.listen(process.env.PORT);
     })
     .catch(err => {
         console.log(err);
