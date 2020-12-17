@@ -10,7 +10,7 @@
                 <th width="*">Total</th>                  
             </thead>
             <tbody>
-            <% for (var i=0;i<cartitems.length;i++){ %>
+            <% for (let i=0;i<cartitems.length;i++){ %>
             <tr>
                 <td>
                     <% if (username.length>0){%>
@@ -39,8 +39,8 @@
     <script>
         $(document).ready(function(){                     
             $('button[name=removefromCart]').on('click',function(){                  
-                var trackId=$(this).attr('id'); 
-                var username='<%=username%>';                   
+                const trackId=$(this).attr('id'); 
+                const username='<%=username%>';                   
                 $.ajax({
                     type: 'DELETE',
                     url:  '/cart/' + trackId,
@@ -50,30 +50,30 @@
                 });  
                 return false;
             });      
-            var $tblrows = $("#tblProducts tbody tr");
+            const $tblrows = $("#tblProducts tbody tr");
             $tblrows.each(function (index) {
-                var $tblrow = $(this);                
-                    var qty = $tblrow.find("[name=quantity]").val();
-                    var price = $tblrow.find("[name=unitprice]").text();
-                    var subTotal = parseInt(qty, 10) * parseFloat(price);
+                const $tblrow = $(this);                
+                    const qty = $tblrow.find("[name=quantity]").val();
+                    const price = $tblrow.find("[name=unitprice]").text();
+                    const subTotal = parseInt(qty, 10) * parseFloat(price);
                     if (!isNaN(subTotal)) {
                         $tblrow.find('.subtot').text(subTotal.toFixed(2));
-                        var grandTotal = 0;
+                        const grandTotal = 0;
                         $(".subtot").each(function () {
-                            var stval = parseFloat($(this).text());
+                            const stval = parseFloat($(this).text());
                             grandTotal += isNaN(stval) ? 0 : stval;
                         });
                         $('.grdtot').text(grandTotal.toFixed(2));
                     }                
                 $tblrow.find('.qty').on('change', function () {
-                    var qty = $tblrow.find("[name=quantity]").val();
-                    var price = $tblrow.find("[name=unitprice]").text();
-                    var subTotal = parseInt(qty, 10) * parseFloat(price);
+                    const qty = $tblrow.find("[name=quantity]").val();
+                    const price = $tblrow.find("[name=unitprice]").text();
+                    const subTotal = parseInt(qty, 10) * parseFloat(price);
                     if (!isNaN(subTotal)) {
                         $tblrow.find('.subtot').text(subTotal.toFixed(2));
-                        var grandTotal = 0;
+                        const grandTotal = 0;
                         $(".subtot").each(function () {
-                            var stval = parseFloat($(this).text());
+                            const stval = parseFloat($(this).text());
                             grandTotal += isNaN(stval) ? 0 : stval;
                         });
                         $('.grdtot').text(grandTotal.toFixed(2));
