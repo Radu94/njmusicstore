@@ -1,5 +1,5 @@
-var Track = require('../models/track');
-var CartItem = require('../models/cartItem')
+const Track = require('../models/track');
+const CartItem = require('../models/cartItem')
 
 getTrack = (req, res) => {
     Track.find({}, function (err, data) {
@@ -53,7 +53,7 @@ deleteTrack = (req, res) => {
 
 postTrackAdd = (req, res) => {
 
-    var newTrack = Track(req.body).save(function (err, data) {
+    const newTrack = Track(req.body).save(function (err, data) {
         if (err) throw err;
         if (req.query.username != null) {
             res.render('track-add', { tracks: data, title: 'Track', username: req.query.username });
@@ -66,7 +66,7 @@ postTrackAdd = (req, res) => {
 
 
 postCart = (req, res) => {
-    var newCartItem = CartItem(req.body).save(function (err, data) {
+    const newCartItem = CartItem(req.body).save(function (err, data) {
         if (err) throw err;
         if (req.query.username != null) {
             res.render('cart', { cartitems: data, title: 'Shopping Cart', username: req.query.username });
