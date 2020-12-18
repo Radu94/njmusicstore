@@ -30,6 +30,8 @@ auth.passportSetup();
 app.use(loginRoutes);
 app.use(trackRoutes);
 
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
 const db_uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.CLUSTER_URL}/${process.env.DB_NAME}?retryWrites=true`;   
 
 mongoose.connect(db_uri)
