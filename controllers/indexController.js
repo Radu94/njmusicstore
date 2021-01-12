@@ -1,6 +1,6 @@
 const getIndex = (req, res) => {
     res.render("index", {
-        username: req.query.username ? req.query.username : "",
+        username: req.query.username || "",
         title: "Home",
     });
 };

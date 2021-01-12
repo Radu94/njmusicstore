@@ -3,17 +3,11 @@ const cart = require("./../models/cart");
 const postCart = (req, res) => {
     cart(req.body).save((err, data) => {
         if (err) throw err;
-        if (req.query.username !== null) {
+        else {
             res.render("cart", {
                 cartitems: data,
                 title: "Shopping Cart",
-                username: req.query.username,
-            });
-        } else {
-            res.render("cart", {
-                cartitems: data,
-                title: "Shopping Cart",
-                username: "",
+                username: req.query.username || ""
             });
         }
     });
@@ -22,17 +16,11 @@ const postCart = (req, res) => {
 const getCart = (req, res) => {
     cart.find({username: req.query.username}, (err, data) => {
         if (err) throw err;
-        if (req.query.username != null) {
+        else {
             res.render("cart", {
                 cartitems: data,
                 title: "Shopping Cart",
-                username: req.query.username,
-            });
-        } else {
-            res.render("cart", {
-                cartitems: data,
-                title: "Shopping Cart",
-                username: "",
+                username: req.query.username || "",
             });
         }
     });
@@ -41,17 +29,11 @@ const getCart = (req, res) => {
 const deleteCart = (req, res) => {
     cart.find({_id: req.params._id}).remove((err, data) => {
         if (err) throw err;
-        if (req.query.username != null) {
+        else {
             res.render("cart", {
                 cartitems: data,
                 title: "Shopping Cart",
-                username: req.query.username,
-            });
-        } else {
-            res.render("cart", {
-                cartitems: data,
-                title: "Shopping Cart",
-                username: "",
+                username: req.query.username || ""
             });
         }
     });
