@@ -1,6 +1,7 @@
 const { Strategy: localStrategy } = require('passport-local');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const { User, addUser } = require('../models/user');
 
 /* MONGOOSE SETUP */
 
@@ -18,26 +19,6 @@ mongoose.connect(
 
 /*Replace the above connection string with the actual connection string of your MongoDB database*/
 const loginController = (app) => {
-  const Schema = mongoose.Schema;
-
-  const UserDetail = new Schema({
-        username: {
-          type: String,
-          unique: true
-        },
-        password: String
-      });
-  const UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
-
-  const testUser = new UserDetails({
-    username: 'test',
-    password: 'test'
-  });
-
-  testUser
-  .save()
-  .catch((e) => console.log('User already exists!'))
-
   /*  PASSPORT SETUP  START*/
 
   app.use(passport.initialize());
@@ -61,21 +42,25 @@ const loginController = (app) => {
 
   /* PASSPORT LOCAL AUTHENTICATION */
   passport.use(new localStrategy(
-    (username, password, done) =>
-        UserDetails.findOne({
-          username: username 
-        }, (err, user) => {
-          if (err)
-            return done(err);
+    async (username, password, done) => {
+      // auto-register
+      const user = await addUser(username, password);
+      
+      User.findOne({
+        username: user.username || username
+      }, (err, user) => {
+        if (err)
+          return done(err);
 
-          if (!user)
-            return done(null, false);
-          
-          if (user.password != password)
-            return done(null, false);
-          
-          return done(null, user);
-        })
+        if (!user)
+          return done(null, false);
+        
+        if (user.password != password)
+          return done(null, false);
+        
+        return done(null, user);
+      });
+    }
   ));
 
   app.get('/', (req, res) => res.render('index', { username : '' , title:'Home'}));
@@ -87,7 +72,7 @@ const loginController = (app) => {
 
   app.post('/login', 
     passport.authenticate('local', { failureRedirect: '/error' }),
-    (req, res) => res.redirect('/success?username='+req.user.username)
+    (req, res) => res.redirect(`/success?username=${req.user.username}`)
   );
 
   app.get('/logout', (req, res) => {
