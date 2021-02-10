@@ -15,31 +15,6 @@ mongoose.connect(
 );
 
 /*Replace the above connection string with the actual connection string of your MongoDB database*/
-const trackTest = new Track({
-  trackName: 'Track name name test',
-  artistName: 'Artist name name test',
-  albumName: 'Album name test',
-  albumYear: 'Year name test',
-  albumGenre: 'Album genre test',  
-  trackPrice: 'Track price test'
-});
-
-const cartItemTest = new UserTrack({
-  username: 'User name test',
-  trackId: 'Track id test',
-  trackName: 'Track name test',
-  quantity: 'Quantity test',
-  unitPrice: 'Price test'
-});
-
-trackTest
-.save()
-.catch((e) => console.log('Track already exists!'))
-
-cartItemTest
-.save()
-.catch((e) => console.log('Item already exists!'))
-
 const urlencodedParser=bodyParser.urlencoded({extended:false});
 
 const trackController= (app) => {      
